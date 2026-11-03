@@ -1,0 +1,17 @@
+# https://git-scm.com/docs/gitignore
+# https://help.github.com/articles/ignoring-files
+
+# 依赖目录
+/bower_components/
+/node_modules/
+
+# Dreamweaver 生成的缓存与设计备注
+_notes/
+*.dwsync.xml
+
+# 编辑器 / 系统文件
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store
