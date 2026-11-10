@@ -130,12 +130,15 @@ img {
 .frame img {
   position: relative;
   z-index: 1;
+}
+
+.frame > img {
   border-radius: var(--radius);
   box-shadow: 0 0 0 1px var(--line), var(--shadow-lift);
   transition: box-shadow .3s ease;
 }
 
-.frame:hover img {
+.frame:hover > img {
   box-shadow: 0 0 0 1px var(--line), 0 26px 54px -30px rgba(0, 0, 0, .55);
 }
 
@@ -212,9 +215,10 @@ h1 em {
 
 .hero-figure {
   margin: 0;
+  position: relative;
 }
 
-.hero-figure img {
+.hero-figure > .frame > img {
   width: 424px;
   max-width: 100%;
 }
@@ -224,6 +228,111 @@ h1 em {
   font-size: 13px;
   color: var(--muted);
   line-height: 1.7;
+}
+
+/* ---------- 照片叠压 ---------- */
+
+.photo-fan {
+  position: absolute;
+  top: -28px;
+  left: -16px;
+  width: 212px;
+  height: 132px;
+  pointer-events: none;
+}
+
+.photo-fan img {
+  position: absolute;
+  bottom: 0;
+  width: 96px;
+  height: 128px;
+  object-fit: cover;
+  border: 5px solid #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .2), 0 16px 28px -18px rgba(0, 0, 0, .6);
+}
+
+.photo-fan img:nth-child(1) {
+  left: 0;
+  bottom: 8px;
+  transform: rotate(-8deg);
+}
+
+.photo-fan img:nth-child(2) {
+  left: 52px;
+  bottom: 2px;
+  transform: rotate(1deg);
+  z-index: 2;
+}
+
+.photo-fan img:nth-child(3) {
+  left: 104px;
+  bottom: 10px;
+  transform: rotate(7deg);
+  z-index: 3;
+}
+
+.polaroid {
+  margin: 0;
+  padding: 8px 8px 24px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .14), 0 18px 32px -22px rgba(0, 0, 0, .55);
+  transition: transform .3s cubic-bezier(.2, .7, .3, 1), box-shadow .3s ease;
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1px;
+}
+
+.polaroid figcaption {
+  margin-top: 7px;
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: center;
+  letter-spacing: .03em;
+  color: var(--muted);
+}
+
+.photo-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 4px 0 46px;
+}
+
+.photo-row .polaroid {
+  width: 30%;
+  max-width: 214px;
+}
+
+.photo-row .polaroid + .polaroid {
+  margin-left: -32px;
+}
+
+.photo-row .polaroid:nth-child(1) {
+  transform: rotate(-5deg) translateY(10px);
+  z-index: 1;
+}
+
+.photo-row .polaroid:nth-child(2) {
+  transform: rotate(.5deg);
+  z-index: 2;
+}
+
+.photo-row .polaroid:nth-child(3) {
+  transform: rotate(4.5deg) translateY(12px);
+  z-index: 3;
+}
+
+.photo-row .polaroid:hover,
+.photo-row .polaroid:focus-within {
+  transform: rotate(0) translateY(-8px);
+  z-index: 4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 26px 44px -26px rgba(0, 0, 0, .55);
 }
 
 /* ---------- 全出血引言带 ---------- */
@@ -811,6 +920,13 @@ p {
   flex-wrap: wrap;
 }
 
+.credit {
+  margin-top: 8px;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: #a09b92;
+}
+
 /* ---------- 动图 ---------- */
 
 .gif-figure {
@@ -1075,6 +1191,23 @@ a:focus-visible,
   .frame::before {
     inset: 10px -10px -10px 10px;
   }
+
+  .photo-fan {
+    display: none;
+  }
+
+  .photo-row {
+    flex-wrap: wrap;
+    row-gap: 14px;
+  }
+
+  .photo-row .polaroid {
+    width: 45%;
+  }
+
+  .photo-row .polaroid + .polaroid {
+    margin-left: -18px;
+  }
 }
 
 @media print {
@@ -1092,7 +1225,8 @@ a:focus-visible,
   .ball-icon,
   .site-footer .footer-inner span:last-child,
   .page-num,
-  .band::after {
+  .band::after,
+  .photo-fan {
     display: none;
   }
 
