@@ -101,7 +101,7 @@ img {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 400px);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 424px);
   gap: 44px;
   align-items: center;
   padding: 54px 0 40px;
@@ -132,9 +132,10 @@ h1 {
 }
 
 .hero-figure img {
+  width: 424px;
+  max-width: 100%;
   border-radius: var(--radius);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
+  box-shadow: 0 0 0 1px var(--line), var(--shadow);
 }
 
 .hero-figure figcaption {
