@@ -101,7 +101,7 @@ img {
 
 .hero {
   display: grid;
-  grid-template-columns: 1.05fr .95fr;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 400px);
   gap: 44px;
   align-items: center;
   padding: 54px 0 40px;
@@ -485,5 +485,91 @@ p {
   .table th,
   .table td {
     padding: 9px 10px;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 10px 16px;
+  background: #fff;
+  color: var(--wine);
+  border-radius: 0 0 8px 0;
+  box-shadow: var(--shadow);
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+a:focus-visible,
+.card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.card {
+  position: relative;
+  padding-bottom: 26px;
+}
+
+.card-num {
+  display: block;
+  margin-bottom: 10px;
+  font: 600 12px/1 Georgia, "Times New Roman", serif;
+  letter-spacing: .2em;
+  color: var(--gold);
+}
+
+.card::after {
+  content: "→";
+  position: absolute;
+  right: 22px;
+  bottom: 16px;
+  font-size: 15px;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.card:hover::after,
+.card:focus-visible::after {
+  opacity: 1;
+  transform: none;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .site-header {
+    position: static;
+  }
+
+  .nav,
+  .skip-link,
+  .card::after,
+  .site-footer .footer-inner span:last-child {
+    display: none;
+  }
+
+  .panel,
+  .card,
+  .hero-figure img {
+    box-shadow: none;
   }
 }
