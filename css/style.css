@@ -583,10 +583,12 @@ a:focus-visible,
 }
 
 .gif-figure {
-  margin: 0 0 20px;
+  margin: 0 auto 22px;
+  max-width: 400px;
 }
 
 .gif-figure img {
+  display: block;
   width: 100%;
   height: auto;
   border-radius: 6px;
